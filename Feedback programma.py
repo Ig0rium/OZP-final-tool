@@ -1,16 +1,16 @@
  
 
-#!python -m pip install python-pptx
+!python -m pip install python-pptx
 
 from pptx import Presentation
-pr1 = Presentation('/Users/Delen/Documents/Informatiekunde/OZP/Slides van vakken/C- CoTaPP/2.pptx')
+#add the location of the presentatoin you want to analyse in the brackets at pr1 = Presentation
+pr1 = Presentation()
 
 #This function goes through every slide in the presentation and over every shape within a slide. If the shape is a text frame, it will read the words within and put these into a list. A dictionary is crerated with the number of the slide and the amount of words on that slide.
 
 def count_words_per_slide (prs):
     wordcount_per_slide = {}
     slide_counter = 0
- 
     for slide in prs.slides:
         slide_counter+=1
         total_words = 0
@@ -63,9 +63,7 @@ def visuals_feedback(dict):
         if dict[key] < 1:
             slides_without_visuals.append(key)
     print("The following slides contain no visuals. Consider adding some visuals to these slides:", *slides_without_visuals, sep=', ' )
-    if len(slides_without_visuals) / len(dict) > 0.4:
-        print("more than 40% of the slides in this presentation contain no visual. Strongly consider adding more visuals to your presentation.")
-    
+   
 def good_slide_feedback(words,visuals):
     good_slides = []
     for key in words:
